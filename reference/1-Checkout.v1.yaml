@@ -53,6 +53,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - Recurring payment
 components:
   schemas:
     User:
