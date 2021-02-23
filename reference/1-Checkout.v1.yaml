@@ -62,6 +62,13 @@ paths:
         - Reverse payment
       responses: {}
       operationId: get-api-reverse
+  /api/session/REQUEST_ID:
+    get:
+      summary: Request Information
+      tags:
+        - Request information
+      responses: {}
+      operationId: get-api-session-REQUEST_ID
 components:
   schemas:
     User:
