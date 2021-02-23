@@ -25,6 +25,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - Create Request
   api/session/:
     post:
       summary: CreateRequest
