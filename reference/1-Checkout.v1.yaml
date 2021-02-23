@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: WebCheckOut
   version: '1.0'
-  description: ''
+  description: 'With WebCheckout your site gets a URL to which your user will be redirected to perform the transactional process. In this way, you avoid catching sensitive information and definition for an interface of payment process.'
 servers:
   - url: 'https://authe-ptp.herokuapp.com/'
     description: WebCheckOut authenticacion
