@@ -33,6 +33,13 @@ paths:
         '200':
           description: OK
     parameters: []
+  /api/session/:
+    post:
+      summary: Request Mix
+      operationId: post-api-session
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
     User:
