@@ -32,6 +32,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - Create Request
     parameters: []
   /api/session/:
     post:
