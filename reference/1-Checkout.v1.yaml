@@ -55,6 +55,13 @@ paths:
           description: OK
       tags:
         - Recurring payment
+  /api/reverse:
+    get:
+      summary: Reverse payment
+      tags:
+        - Reverse payment
+      responses: {}
+      operationId: get-api-reverse
 components:
   schemas:
     User:
