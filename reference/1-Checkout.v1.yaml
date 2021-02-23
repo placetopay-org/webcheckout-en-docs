@@ -1,7 +1,8 @@
 openapi: 3.0.0
 info:
-  title: 1-Checkout
+  title: WebCheckOut
   version: '1.0'
+  description: ''
 servers:
   - url: 'http://localhost:3000'
 paths: {}
