@@ -46,6 +46,13 @@ paths:
           description: OK
       tags:
         - Create Request
+  /api/collect:
+    post:
+      summary: Collect Request
+      operationId: post-api-collect
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
     User:
