@@ -17,6 +17,22 @@ paths:
       tags:
         - Authentication
     parameters: []
+  api/session:
+    parameters: []
+    post:
+      summary: CreateRequest Subscription
+      operationId: postapi-session
+      responses:
+        '200':
+          description: OK
+  api/session/:
+    post:
+      summary: CreateRequest
+      operationId: post-api-session
+      responses:
+        '200':
+          description: OK
+    parameters: []
 components:
   schemas:
     User:
