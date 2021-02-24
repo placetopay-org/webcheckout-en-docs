@@ -114,6 +114,36 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      date:
+                        type: string
+                  requestId:
+                    type: string
+                  processUrl:
+                    type: string
+              examples:
+                Success:
+                  value:
+                    status:
+                      status: OK
+                      reason: PC
+                      message: La petición se ha procesado correctamente
+                      date: '2020-11-22T20:06:59-05:00'
+                    requestId: 30571
+                    processUrl: 'https://checkout.placetopay.ws/session/30571/d4e5269fce22fcf62f2127a6fa9d8a3a'
       tags:
         - Create Request
       description: |
