@@ -135,6 +135,53 @@ paths:
         The response structure contains all the information from the original request and a subscription structure with an instrument (instrument) represented in the form of a token.
 
         You can simulate the operation taking the following example, placing your authentication on the right side of the page.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                auth:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    tranKey:
+                      type: string
+                    nonce:
+                      type: string
+                    seed:
+                      type: string
+                subscription:
+                  type: object
+                  properties:
+                    reference:
+                      type: string
+                    description:
+                      type: string
+                expiration:
+                  type: string
+                returnUrl:
+                  type: string
+                ipAddress:
+                  type: string
+                userAgent:
+                  type: string
+            examples:
+              example:
+                value:
+                  auth:
+                    login: usuarioprueba
+                    tranKey: jsHJzM3+XG754wXh+aBvi70D9/4=
+                    nonce: TTJSa05UVmtNR000TlRrM1pqQTRNV1EREprWkRVMU9EZz0=
+                    seed: '2019-04-25T18:17:23-04:00'
+                  subscription:
+                    reference: '3110'
+                    description: Una suscripción de prueba
+                  expiration: '2019-08-02T00:00:00-05:00'
+                  returnUrl: 'https://mysite.com/response/3210'
+                  ipAddress: 127.0.0.1
+                  userAgent: PlacetoPay Sandbox
   api/session/:
     post:
       summary: CreateRequest
