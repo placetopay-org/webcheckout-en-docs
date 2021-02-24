@@ -135,6 +135,21 @@ paths:
           description: OK
       tags:
         - Create Request
+      description: |-
+        Mixed payment allows you to use multiple payment methods at the time of payment for same session.
+
+        To make use of this functionality, in the payment structure of Payment it is necessary to send the `allowPartial` attribute as: True, additional must be requested in PlacetoPay to enable such functionality in administrative panel.
+
+        **Additional states of a mixed payment session**
+
+        When obtaining the result of the trade, you should keep in mind following two states, since these must be controlling by trade, if user does not finish  payment it must be determined to do if it is reversed or another procedure is done:
+
+        **APPROVED_PARTIAL**: Indicates that at least one approved payment is made but the full session payment is not made.
+        **PARTIAL_EXPIRED**: Indicates that at least one approved payment is made but the full session payment has not been completed and the session has expired.
+
+        `It is important to identify according to the site's business rule when obtaining either of these two states`.
+
+        `For mixed payments there are also the other statuses of a normal approved, REJECTED, PENDING, FAILED transaction`
   /api/collect:
     post:
       summary: Collect Request
