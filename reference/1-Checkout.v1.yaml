@@ -726,6 +726,18 @@ paths:
             schema:
               type: object
               properties: {}
+            examples:
+              example:
+                value:
+                  auth:
+                    login: string
+                    tranKey: string
+                    nonce: string
+                    seed: string
+          application/xml:
+            schema:
+              type: object
+              properties: {}
         description: |-
           To consult the session you must send the session unique identifier requestId, using the `GetRequestInformation` method.
 
