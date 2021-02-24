@@ -216,13 +216,83 @@ paths:
             | processorFields **Optional** | NameValuePair[] | Campos adicionales del procesador. |
       description: 'Allows to revert an aproved payment with the internal reference code, this transaction must have been made at night before 8 o’clock, since due to restrictions in the banking networks if this payment is made after this hour it may not be completed.'
   /api/session/REQUEST_ID:
-    get:
+    post:
       summary: Request Information
-      tags:
-        - Request information
-      responses: {}
-      operationId: get-api-session-REQUEST_ID
-      description: "With WebCheckout your site gets a URL to which your user will be redirected to perform the transactional process. In this way, you avoid catching sensitive information and definition for an interface of payment process.\nWebcheckout API is based on REST, returns answers with JSON coding. To make use of this service it is necessary that your site connect using Version 1.2 of TLS.\nYou can use the WebCheckout API in test mode, which does not interact with banking networks. Depending on the endpoint used in the application determines whether it is in productive mode or in test mode.\n•\tTest mode: https://test.placetopay.com/redirection/api/session/\n•\tProductive mode: https://checkout.placetopay.com\nConsiderations:\nThe URL is needed where data will be sent by using post (endpoint) method.\nJSON should be used for sending authentication parameters, payment information and control data.\nJSON should be used for sending authentication parameters, payment information and control data.\nImportant: The expiration is the maximum time given for the session, if a user does not perform the operation, the session is pending until expiration.\n\n* `The return URL (Returnurl) is used to redirect the user once the operation is finished. It is recommended to send a data to the URL with which the site can identify the record for example: https://mysite.com/response/ireference}`.\nConfigure a notification URL on your server using ports `80` or `443` and in case the payment is decline or approved, receive a notification by post as an asynchronous way`.\n\n**Important**: This notification URL must be supplied to Placetopay for its configuration.\n\n**PROCESS OF INTEGRATION**\n\n1. At the moment, user proceed with operation on your site, you must consume the createrequest method.\n2. If the request is processed correctly, the service creates a session and returns an answer:\n*  `Requestid` identifier\n* `ProcessURL` `Processing URL`.\n\n3. Create a record in your system, it relates that record to the `Requestid` and grants a pending status.\n4. It redirects the user to the `ProcessURL` obtained in point 2.\n5. In Web Checkout interface, the user going to make the payment or subscription process where the information must be filled to process payment.\n6. Subsequently, the user must select payment method which the purchase will be added by entering data from payment method.\n7.\tOnce user performs the process and click on \"Return to commerce\", it is sent to the Returnurl return URL (specified attribute when creating a\t operation).\n8.\tBack to commerce, with RequestiD registred you must consult placetopay the status of the session using the GetRequestInformation method.\n9.\tRun your business rule according to status obtained, to update status of it in your database.\n10.\tAsynchronously, Placetopay performs a notification, final status of a session, to your site.\n11.\tWe recommend implement a probe process to resolve those transactions that were not resolved at sections 7 and 9\n\n**Checkout Web Interface Methods**\n\nWeb Service contains different methods where use request - response type operations are executed, these require for each one, income parameters that are used by data structures, which information is processed to subsequently return a response. If you want to run a method, you can quickly use any of them on the left and simulate it on  right side of documentation.\n\n\n**Servers**\n\nWebCheckOut Authenticacion https://authe-ptp.herokuapp.com/\nWebCheckOut Redirection https://checkout.placetopay.ws/\nWebCheckOut Pruebas_Redirección https://test.placetopay.com/redirection/\n\n\n"
+      operationId: post-api-session-REQUEST_ID
+      responses:
+        '200':
+          description: |
+            The transaction response must contain different objects:
+            * status
+            * request
+            * fields
+
+            Estructure that contains the response information of a request or payment,it informs you the current status of itself.
+
+            **STATUS**
+
+            **Atributes**
+
+            | Parameter | Type | Description|
+            |-----------|------|-------------|
+            | status **Required** | String(32) | Petition or payment status. |
+            | reason **Required** | String | Code of the provided reason. |
+            | message **Required** | String | Reason code description. |
+            | date **String** | DateTime | Date and time that the payment status is generated. |
+
+            **Petition or payment status**
+
+            **OK**: Authentication request processed successfully.
+            **FAILED**: Authentication request failed.
+            **APPROVED**: Payment petition or suscription finished.
+            **APROVED_PARTIAL**: If partially allowed, a transaction has been approved, but an amount still remains.
+            **PARTIAL_EXPIRED**: When there is a partial approved payment, but the session has expired.
+            **REJECTED**: The transaction has been declined.
+            **PENDING**: Pending transaction for the session, must be locked until resolution.
+            **PENDING_VALIDATION**: The session is pending of user identity validation.
+            **REFUNDED**: Transaction refund at a request of a cardholder to the merchant. 
+
+            **REQUEST**
+
+            Structure that contains all the transaction information to be processed
+
+            | Parameter| Type| Description|
+            |-----------|------|-------------|
+            | locale Optional | string | Defined with the codes ISO 631-1 (language) and ISO 3166-1 alpha-2 (2-country letters).ex. en_US, es_CO |
+            | payer Optional | Person | Payer information, if set this objetc, the payer’s data will use this information. |
+            | buyer Optional | Person | Buyer information in the transaction. |
+            | payment Optional | PaymentRequest | Payment object when you need to request a charge. |
+            | subscription Optional | SubscriptionRequest | Suscription object used when you need a token. |
+            | paymentMethod Optional | string | Force the payment method in the redirection interface, the accepted codes are those in the list, if you need more than one, separate them with a coma ex. ATH,PSE,CR_VS |
+            | expiration Required | dateTime | Expiration date, the user must to finish the process before this time |
+            | returnUrl Required | String | Return URL is used to redirect once the payment operation finished. |
+            | cancelUrl Optional | string | URL to return when the user aborts the operation. |
+            | ipAddress Required | string | User’s IP address. |
+            | userAgent Required | string | User’s agent used. |
+            | skipResult Optional | bool | If the parameter is sent on true, the result screen is omitted and once the payment is approved, it returns to the store. |
+            | BuyerFill Optional | bool | By default, the data requested in redirection is filled with those of the buyer sent, if it is sent as true this automatic autocompletion is omitted. |
+
+            **FIELDS**
+
+            | Parameter| Type| Description|
+            |-----------|------|-------------|
+            | keyword Optional | string | Key for the pair of data values. |
+            | value Optional | string | Value for the data pair. |
+            | displayOn Optional | string | Under what circumstances should the field be displayed in the redirection interface (none, payment, receipt, both, approved.) |
+      description: |
+        Obtains the information of the session and transactions caried out.
+        Information query of a transaction can be given when the user is returned to your site or by a schedule task that daily executes a script in wich all pending operations on your site are consulted.
+        Recomendation: Implement both alternatives in your site, because if something fails in the return and notification process, the schedule task can be used as a contingency.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+        description: |-
+          To consult the session you must send the session unique identifier requestId, using the `GetRequestInformation` method.
+
+          `For this consumption it is also necessary to send the authentication in the request`.
 components:
   schemas:
     User:
