@@ -293,6 +293,8 @@ paths:
           To consult the session you must send the session unique identifier requestId, using the `GetRequestInformation` method.
 
           `For this consumption it is also necessary to send the authentication in the request`.
+      tags:
+        - Request information
 components:
   schemas:
     User:
