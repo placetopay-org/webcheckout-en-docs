@@ -159,6 +159,92 @@ paths:
         This method allows creation of payment session (`CreateRequest`) which requests a creation of session (collection request) and returns the ID and processing URL.
 
         You can simulate process considering the following example, filling authentication and example on the right side of the page.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                auth:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    tranKey:
+                      type: string
+                    nonce:
+                      type: string
+                    seed:
+                      type: string
+                locale:
+                  type: string
+                buyer:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    surname:
+                      type: string
+                    email:
+                      type: string
+                    document:
+                      type: string
+                    documentType:
+                      type: string
+                    mobile:
+                      type: string
+                payment:
+                  type: object
+                  properties:
+                    reference:
+                      type: string
+                    description:
+                      type: string
+                    amount:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                        total:
+                          type: boolean
+                    allowPartial:
+                      type: string
+                expiration:
+                  type: string
+                returnUrl:
+                  type: string
+                ipAddress:
+                  type: string
+                userAgent:
+                  type: string
+            examples:
+              example:
+                value:
+                  auth:
+                    login: usuarioprueba
+                    tranKey: jsHJzM3+XG754wXh+aBvi70D9/4=
+                    nonce: TTJSa05UVmtNR000TlRrM1pqQTRNV1EREprWkRVMU9EZz0=
+                    seed: '2019-04-25T18:17:23-04:00'
+                  locale: es_CO
+                  buyer:
+                    name: Deion
+                    surname: Ondricka
+                    email: dnetix@yopmail.com
+                    document: '1040035000'
+                    documentType: CC
+                    mobile: 3006108300
+                  payment:
+                    reference: '3210'
+                    description: Pago básico de prueba 04032019
+                    amount:
+                      currency: COP
+                      total: '10000'
+                    allowPartial: false
+                  expiration: '2019-03-05T00:00:00-05:00'
+                  returnUrl: 'https://mysite.com/response/3210'
+                  ipAddress: 127.0.0.1
+                  userAgent: PlacetoPay Sandbox
+        description: ''
     parameters: []
   /api/session/:
     post:
