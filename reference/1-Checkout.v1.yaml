@@ -37,6 +37,40 @@ paths:
         `The seed can't make a difference of more than 5 minutes.`
 
         **Errors**
+
+        Web CheckOut service returns a response codes for failed authentication in message attribute of status object.
+
+        | Code| Cause |
+        |-----------|-------------|
+        | 100 | UsernameToken not provided (Malformed Authorization Header). |
+        | 101 | Site IDENTIFIER does not exist (Incorrect login or not in the environment). |
+        | 102 | TranKey hash does not match (wrong or poorly formed Trankey). |
+        | 103 | Seed date greater than 5 minutes |
+        | 104 | Inactive site. |
+        | 105 | Site expired. |
+        | 106 | Expired credentials. |
+        | 107 | UsernameToken wrong definition (Does not fulfill with WSSE header). |
+        | 200 | Skip the SOAP authentication header. |
+        |  10001 | Contact Support. |
+
+        **Frequent errors**
+
+        Error message `Authentication badly formed`
+
+        It is presented when the system does not detect that Login, Trankey, Seed or Nonce is being sent in the AUTH structure sent, it can also be presented if these data are sent but incorrectly, without the Content-Type "Application / JSON" parameter " So the server interprets the request as text instead of a array data.
+
+        Your servers require TLSv1.2 to receive the request, due to the PCI standard. Please check encryption and protocol used to connect to server. If you use Java, keep in mind that only versions after 8 have full support.
+
+        SoapFault responds with the message  `Authentication Failed 103`
+
+        Authentication process we reviewed Created field, this field must be in GMT time or local time using the zone time. If you get this answer, it is because your time is not accurate with real time. We only allow 5 minutes of difference between time. You can use NTP to maintain the precision of the clock.
+        Keep in mind that base64 should be for RAW OUTPUT of SHA1 and according to all programming languages this may be required to configure this option, for example. In php base64_encode (Sha1 (..., true)) this parameter would return RAW OUTPUT for the `SHA1 algorithm.`
+
+        On the right side of this site, can simulate generation of authentication required for each of requests made to Payment Gateway (WebCheckout), said method receives a login and trankey via POST request, internally processing is performed From the information to return a JSON structure that can be copied and stuck in other requests within AUTH object.
+
+        It should be noted that this method is provided as an aid to generate the authentication structure of the requests and does not part of the webcheckout integration method
+
+        URL Reference authentication:  https://placetopay.github.io/web-checkout-api-docs/?shell#autenticacion
     parameters: []
   api/session:
     parameters: []
