@@ -159,6 +159,16 @@ paths:
           description: OK
       tags:
         - Recurring payment
+      description: |-
+        It allows to make collections without the intervention of user using pre-subscribed means of payment, considering periodicity agreed with customer at time of subscription from payment method.
+
+        **Attributes**
+
+        | Parameter | Type | Description |
+        |-----------|------|-------------|
+        | Payer **Required** | Person | Data of the holder of stored payment method. |
+        | payment **Required** | PaymentRequest | An object that contains payment structure when you need to request a payment. |
+        | instrument **Required** | Instrument | Data associated with subscribed payment method. |
   /api/reverse:
     get:
       summary: Reverse payment
