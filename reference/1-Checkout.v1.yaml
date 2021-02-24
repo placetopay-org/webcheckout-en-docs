@@ -16,6 +16,16 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Authentication example:
+                  value:
+                    LOGIN: 184053a1c182247d2f53964fdb109e00
+                    TRANK: Q0nj0QeRN0h1EH3H
       tags:
         - Authentication
       description: |-
