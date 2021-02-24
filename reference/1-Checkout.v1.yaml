@@ -82,6 +82,12 @@ paths:
                 value:
                   LOGIN: 184053a1c182247d2f53964fdb109e00
                   TRANK: Q0nj0QeRN0h1EH3H
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          required: true
     parameters: []
   api/session:
     parameters: []
