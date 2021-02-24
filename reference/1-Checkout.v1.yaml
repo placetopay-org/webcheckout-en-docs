@@ -82,6 +82,26 @@ paths:
           description: OK
       tags:
         - Create Request
+      description: |+
+        The subscription allows you to securely store (tokenized) a user's payment method, so that they can then make charges related to it. To make use of this functionality it is necessary to send  subscription structure in the RedirectRequest, which requests the creation of the session (subscription request) and returns the ID and process URL.
+
+        Structure used for the subscription payment method.
+
+        * SubscriptionResponse
+        * CollectRequest
+        * NameValuePair
+        * Token
+        * Person
+        * Instrument
+
+        **It is recommended to charge a minimum value to identify that the card is active**.
+
+        **Token information must be stored on your site, related to the user and/or product. After you have the token, you can generate charges to the tokenized payment method using the collect method**.
+
+        The response structure contains all the information from the original request and a subscription structure with an instrument (instrument) represented in the form of a token.
+
+        You can simulate the operation taking the following example, placing your authentication on the right side of the page.
+
   api/session/:
     post:
       summary: CreateRequest
