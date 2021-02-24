@@ -16,6 +16,19 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  login:
+                    type: string
+                  tranKey:
+                    type: string
+                  seed:
+                    type: string
+                  nonce:
+                    type: string
       tags:
         - Authentication
       description: |-
@@ -76,7 +89,11 @@ paths:
           application/json:
             schema:
               type: object
-              properties: {}
+              properties:
+                LOGIN:
+                  type: string
+                TRANK:
+                  type: string
             examples:
               Authentication example:
                 value:
