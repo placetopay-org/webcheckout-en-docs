@@ -624,6 +624,34 @@ paths:
       description: 'Allows to revert an aproved payment with the internal reference code, this transaction must have been made at night before 8 o’clock, since due to restrictions in the banking networks if this payment is made after this hour it may not be completed.'
       tags:
         - Reverse payment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                auth:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    tranKey:
+                      type: string
+                    nonce:
+                      type: string
+                    seed:
+                      type: string
+                internalReference:
+                  type: number
+            examples:
+              example:
+                value:
+                  auth:
+                    login: usuarioprueba
+                    tranKey: jsHJzM3+XG754wXh+aBvi70D9/4=
+                    nonce: TTJSa05UVmtNR000TlRrM1pqQTRNV1EREprWkRVMU9EZz0=
+                    seed: '2019-04-25T18:17:23-04:00'
+                  internalReference: '1468647381'
   /api/session/REQUEST_ID:
     post:
       summary: Request Information
