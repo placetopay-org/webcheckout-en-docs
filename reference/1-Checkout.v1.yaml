@@ -716,6 +716,83 @@ paths:
             | keyword **Optional** | string | Key for the pair of data values. |
             | value **Optional** | string | Value for the data pair. |
             | displayOn **Optional** | string | Under what circumstances should the field be displayed in the redirection interface (none, payment, receipt, both, approved.) |
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example:
+                  value:
+                    requestId: 447063
+                    status:
+                      status: REJECTED
+                      reason: EX
+                      message: La petición ha expirado
+                      date: '2021-01-23T16:44:33-05:00'
+                    request:
+                      locale: es_CO
+                      buyer:
+                        document: '1040035000'
+                        documentType: CC
+                        name: Edmund
+                        surname: Leffler
+                        email: dnetix@yopmail.com
+                        mobile: '3006108300'
+                      payer:
+                        document: '1040035000'
+                        documentType: CC
+                        name: Edmund
+                        surname: Leffler
+                        email: dnetix@yopmail.com
+                        mobile: '3006108300'
+                      payment:
+                        reference: TEST_20210122_113216
+                        description: Rerum fugiat expedita eaque ut.
+                        amount:
+                          currency: COP
+                          total: 155000
+                        allowPartial: false
+                        subscribe: false
+                      fields:
+                        - keyword: _processUrl_
+                          value: 'https://test.placetopay.com/redirection/session/447063/bfeca0f837555b282f3dfbe5e40f1047'
+                          displayOn: none
+                      returnUrl: 'https://dnetix.co/p2p/client'
+                      ipAddress: 181.58.39.159
+                      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36'
+                      expiration: '2021-01-23T11:32:16-05:00'
+                    payment:
+                      - status:
+                          status: REJECTED
+                          reason: '01'
+                          message: Negada Establecimiento debe comunicarse con el centro de autorizaciones
+                          date: '2021-01-22T11:49:03-05:00'
+                        internalReference: '1502031249'
+                        paymentMethod: visa
+                        paymentMethodName: Visa
+                        issuerName: BANCO DE PRUEBAS
+                        amount:
+                          from:
+                            currency: COP
+                            total: 155000
+                          to:
+                            currency: COP
+                            total: 155000
+                          factor: '1'
+                        authorization: '000000'
+                        reference: TEST_20210122_113216
+                        receipt: '1611334143'
+                        franchise: CR_VS
+                        refunded: false
+                        processorFields:
+                          - keyword: lastDigits
+                            value: '****0040'
+                            displayOn: none
+                          - keyword: id
+                            value: 954e7c99a741e78982a1e43fbd46a4fb
+                            displayOn: none
+                    subscription: null
       description: |
         Obtains the information of the session and transactions caried out.
         Information query of a transaction can be given when the user is returned to your site or by a schedule task that daily executes a script in wich all pending operations on your site are consulted.
@@ -725,7 +802,18 @@ paths:
           application/json:
             schema:
               type: object
-              properties: {}
+              properties:
+                auth:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    tranKey:
+                      type: string
+                    nonce:
+                      type: string
+                    seed:
+                      type: string
             examples:
               example:
                 value:
