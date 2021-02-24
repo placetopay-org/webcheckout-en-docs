@@ -330,6 +330,30 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      date:
+                        type: string
+              examples:
+                example:
+                  value:
+                    status:
+                      status: PARTIAL_EXPIRED
+                      reason: PX
+                      message: La petición está expirada o cancelada y se han realizado pagos
+                      date: '2019-04-01T11:15:38-05:00'
       tags:
         - Create Request
       description: |-
