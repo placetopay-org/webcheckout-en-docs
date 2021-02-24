@@ -71,6 +71,17 @@ paths:
         It should be noted that this method is provided as an aid to generate the authentication structure of the requests and does not part of the webcheckout integration method
 
         URL Reference authentication:  https://placetopay.github.io/web-checkout-api-docs/?shell#autenticacion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              Authentication example:
+                value:
+                  LOGIN: 184053a1c182247d2f53964fdb109e00
+                  TRANK: Q0nj0QeRN0h1EH3H
     parameters: []
   api/session:
     parameters: []
