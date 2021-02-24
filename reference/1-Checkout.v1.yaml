@@ -260,27 +260,27 @@ paths:
 
             | Parameter| Type| Description|
             |-----------|------|-------------|
-            | locale Optional | string | Defined with the codes ISO 631-1 (language) and ISO 3166-1 alpha-2 (2-country letters).ex. en_US, es_CO |
-            | payer Optional | Person | Payer information, if set this objetc, the payer’s data will use this information. |
-            | buyer Optional | Person | Buyer information in the transaction. |
-            | payment Optional | PaymentRequest | Payment object when you need to request a charge. |
-            | subscription Optional | SubscriptionRequest | Suscription object used when you need a token. |
-            | paymentMethod Optional | string | Force the payment method in the redirection interface, the accepted codes are those in the list, if you need more than one, separate them with a coma ex. ATH,PSE,CR_VS |
-            | expiration Required | dateTime | Expiration date, the user must to finish the process before this time |
-            | returnUrl Required | String | Return URL is used to redirect once the payment operation finished. |
-            | cancelUrl Optional | string | URL to return when the user aborts the operation. |
-            | ipAddress Required | string | User’s IP address. |
-            | userAgent Required | string | User’s agent used. |
-            | skipResult Optional | bool | If the parameter is sent on true, the result screen is omitted and once the payment is approved, it returns to the store. |
-            | BuyerFill Optional | bool | By default, the data requested in redirection is filled with those of the buyer sent, if it is sent as true this automatic autocompletion is omitted. |
+            | locale **Optional** | string | Defined with the codes ISO 631-1 (language) and ISO 3166-1 alpha-2 (2-country letters).ex. en_US, es_CO |
+            | payer **Optional** | Person | Payer information, if set this objetc, the payer’s data will use this information. |
+            | buyer **Optional** | Person | Buyer information in the transaction. |
+            | payment **Optional** | PaymentRequest | Payment object when you need to request a charge. |
+            | subscription **Optional** | SubscriptionRequest | Suscription object used when you need a token. |
+            | paymentMethod **Optional** | string | Force the payment method in the redirection interface, the accepted codes are those in the list, if you need more than one, separate them with a coma ex. ATH,PSE,CR_VS |
+            | expiration **Required** | dateTime | Expiration date, the user must to finish the process before this time |
+            | returnUrl **Required** | String | Return URL is used to redirect once the payment operation finished. |
+            | cancelUrl **Optional** | string | URL to return when the user aborts the operation. |
+            | ipAddress **Required** | string | User’s IP address. |
+            | userAgent **Required** | string | User’s agent used. |
+            | skipResult **Optional** | bool | If the parameter is sent on true, the result screen is omitted and once the payment is approved, it returns to the store. |
+            | BuyerFill **Optional** | bool | By default, the data requested in redirection is filled with those of the buyer sent, if it is sent as true this automatic autocompletion is omitted. |
 
             **FIELDS**
 
             | Parameter| Type| Description|
             |-----------|------|-------------|
-            | keyword Optional | string | Key for the pair of data values. |
-            | value Optional | string | Value for the data pair. |
-            | displayOn Optional | string | Under what circumstances should the field be displayed in the redirection interface (none, payment, receipt, both, approved.) |
+            | keyword **Optional** | string | Key for the pair of data values. |
+            | value **Optional** | string | Value for the data pair. |
+            | displayOn **Optional** | string | Under what circumstances should the field be displayed in the redirection interface (none, payment, receipt, both, approved.) |
       description: |
         Obtains the information of the session and transactions caried out.
         Information query of a transaction can be given when the user is returned to your site or by a schedule task that daily executes a script in wich all pending operations on your site are consulted.
