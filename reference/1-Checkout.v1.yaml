@@ -170,12 +170,51 @@ paths:
         | payment **Required** | PaymentRequest | An object that contains payment structure when you need to request a payment. |
         | instrument **Required** | Instrument | Data associated with subscribed payment method. |
   /api/reverse:
-    get:
+    post:
       summary: Reverse payment
-      tags:
-        - Reverse payment
-      responses: {}
-      operationId: get-api-reverse
+      operationId: post-api-reverse
+      responses:
+        '200':
+          description: |
+            Service that responds to an instance of the class `ReverseResponse`. You can check the session status through:
+
+            **Response structure to a reversed payment request**
+
+            `response.IsSuccessful() // return boolean`
+
+            `response.Status.status // return boolean`
+
+            **STATUS**
+
+            Attributes
+
+            | Parameter | Type | Description |
+            |-----------|------|-------------|
+            | status **Required** | String(32) | Petition or payment status. |
+            | reason **Required** | String | Code of the provided reason. |
+            | message **Required** | String | Reason code description. |
+            | date **String** | DateTime | Date and time that the payment status is generated.  |
+
+            **Petition or payment status:**
+
+            **OK**: Authentication request processed successfully.
+            **FAILED**: Authentication request failed.
+            **APPROVED**: Payment petition or suscription finished.
+
+            | Parameter | Type | Description |
+            |-----------|------|-------------|
+            | internalReference **Optional** | int | Internal reference in Placetopay. |
+            | reference **Optional** | string | Reference sent by the merchant for the transaction. |
+            | paymentMethod **Optional** | string | Code of the payment method used. |
+            | paymentMethodName **Optional** |string  | Name of the payment method used. |
+            | issuerName **Optional** | string | Name of the isuer or processor. |
+            | amount **Optional** | AmountConversion | Processed value. |
+            | receipt **Optional** | string  | Transaction receipt number. |
+            | franchise **Optional** | string  | Franchise of the card used.  |
+            | refunded **Optional**  | boolean |  |
+            | authorization **Optional** | string | Código de autorización. |
+            | processorFields **Optional** | NameValuePair[] | Campos adicionales del procesador. |
+      description: 'Allows to revert an aproved payment with the internal reference code, this transaction must have been made at night before 8 o’clock, since due to restrictions in the banking networks if this payment is made after this hour it may not be completed.'
   /api/session/REQUEST_ID:
     get:
       summary: Request Information
