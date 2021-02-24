@@ -2,15 +2,7 @@ openapi: 3.0.0
 info:
   title: WebCheckOut
   version: '1.0'
-  description: |
-    With WebCheckout your site gets a URL to which your user will be redirected to perform the transactional process. In this way, you avoid catching sensitive information and definition for an interface of payment process.
-
-    Webcheckout API is based on REST, returns answers with JSON coding. To make use of this service it is necessary that your site connect using Version 1.2 of TLS.
-
-    You can use the WebCheckout API in test mode, which does not interact with banking networks. Depending on the endpoint used in the application determines whether it is in productive mode or in test mode.
-
-    * Test mode: https://test.placetopay.com/redirection/api/session/
-    * Productive mode: https://checkout.placetopay.com
+  description: "With WebCheckout your site gets a URL to which your user will be redirected to perform the transactional process. In this way, you avoid catching sensitive information and definition for an interface of payment process.\n\nWebcheckout API is based on REST, returns answers with JSON coding. To make use of this service it is necessary that your site connect using Version 1.2 of TLS.\n\nYou can use the WebCheckout API in test mode, which does not interact with banking networks. Depending on the endpoint used in the application determines whether it is in productive mode or in test mode.\n\n* Test mode: https://test.placetopay.com/redirection/api/session/\n* Productive mode: https://checkout.placetopay.com\n\n### Considerations:\n\n* The URL is needed where data will be sent by using post (endpoint) method.\n\n* JSON should be used for sending authentication parameters, payment information and control data.\n\n* Expiration time (expiration) must be a valid date in ISO 8601 format, indicates time limit that the user has to make payment and must be at least 5 minutes higher than current date.\n\n**Important**: The expiration is the maximum time given for the session, if a user does not perform the operation, the session is pending until expiration.\n\n* The return URL (Returnurl) is used to redirect the user once the operation is finished. It is recommended to sea data to the URL with which the site can identify the record for example: https://mysite.com/response/ireference}. \n\n* Configure a notification URL on your server using ports 80 or 443 and in case the payment is decline or approved,receive a notification by post as an asynchronous way.\n\n**Important**: This notification URL must be supplied to Placetopay for its configuration.\n\n### PROCESS OF INTEGRATION\n\n1. At the moment, user proceed with operation on your site, you must consume the createrequest method.\n2. If the request is processed correctly, the service creates a session and returns an answer:\n\n* `Requestid` identifier\n* •\t`ProcessUrl` Processing Url"
 servers:
   - url: 'https://authe-ptp.herokuapp.com/'
     description: WebCheckOut authenticacion
