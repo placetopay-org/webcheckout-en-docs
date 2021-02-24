@@ -468,6 +468,27 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      '':
+                        type: string
+                      status:
+                        type: string
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      date:
+                        type: string
+              examples:
+                example:
+                  value: {}
       tags:
         - Recurring payment
       description: |-
@@ -480,6 +501,44 @@ paths:
         | Payer **Required** | Person | Data of the holder of stored payment method. |
         | payment **Required** | PaymentRequest | An object that contains payment structure when you need to request a payment. |
         | instrument **Required** | Instrument | Data associated with subscribed payment method. |
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                auth:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    tranKey:
+                      type: string
+                    nonce:
+                      type: string
+                    seed:
+                      type: string
+                instrument:
+                  type: object
+                  properties:
+                    token:
+                      type: object
+                      properties:
+                        token:
+                          type: string
+                payer:
+                  type: object
+                  properties:
+                    document:
+                      type: string
+                    documentType:
+                      type: string
+                    name:
+                      type: string
+                    surname:
+                      type: string
+                    email:
+                      type: string
   /api/reverse:
     post:
       summary: Reverse payment
