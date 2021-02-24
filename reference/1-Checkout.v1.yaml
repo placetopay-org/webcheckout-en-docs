@@ -184,6 +184,66 @@ paths:
         `It is important to identify according to the site's business rule when obtaining either of these two states`.
 
         `For mixed payments there are also the other statuses of a normal approved, REJECTED, PENDING, FAILED transaction`
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                auth:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    tranKey:
+                      type: string
+                    nonce:
+                      type: string
+                    seed:
+                      type: string
+                payment:
+                  type: object
+                  properties:
+                    reference:
+                      type: string
+                    description:
+                      type: string
+                    amount:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                        total:
+                          type: number
+                    allowPartial:
+                      type: boolean
+                expiration:
+                  type: string
+                returnUrl:
+                  type: string
+                ipAddress:
+                  type: string
+                userAgent:
+                  type: string
+            examples:
+              example:
+                value:
+                  auth:
+                    login: usuarioprueba
+                    tranKey: jsHJzM3+XG754wXh+aBvi70D9/4=
+                    nonce: TTJSa05UVmtNR000TlRrM1pqQTRNV1EREprWkRVMU9EZz0=
+                    seed: '2019-04-25T18:17:23-04:00'
+                  payment:
+                    reference: '3210'
+                    description: Pago mixto de prueba
+                    amount:
+                      currency: COP
+                      total: '10000'
+                    allowPartial: true
+                  expiration: '2019-03-05T00:00:00-05:00'
+                  returnUrl: 'https://mysite.com/response/3210'
+                  ipAddress: 127.0.0.1
+                  userAgent: PlacetoPay Sandbox
   /api/collect:
     post:
       summary: Collect Request
