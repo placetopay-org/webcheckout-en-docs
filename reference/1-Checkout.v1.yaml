@@ -215,6 +215,8 @@ paths:
             | authorization **Optional** | string | Código de autorización. |
             | processorFields **Optional** | NameValuePair[] | Campos adicionales del procesador. |
       description: 'Allows to revert an aproved payment with the internal reference code, this transaction must have been made at night before 8 o’clock, since due to restrictions in the banking networks if this payment is made after this hour it may not be completed.'
+      tags:
+        - Reverse payment
   /api/session/REQUEST_ID:
     post:
       summary: Request Information
