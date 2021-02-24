@@ -539,6 +539,43 @@ paths:
                       type: string
                     email:
                       type: string
+                payment:
+                  type: object
+                  properties:
+                    reference:
+                      type: string
+                    description:
+                      type: string
+                    amount:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                        total:
+                          type: number
+            examples:
+              example:
+                value:
+                  auth:
+                    login: usuarioprueba
+                    tranKey: YhmdBEZKTMAFsxkI1SrgS4SdBfE=
+                    nonce: TlRoaE0yWTROMk0wWVRFellXUTVNVFUwWVRZNVpHRXpZbU16TWpJM01UWT0=
+                    seed: '2019-04-25T18:17:23-04:00'
+                  instrument:
+                    token:
+                      token: 1b394089c97bc5f155b684c068806d858d9e4180c8643b5b29cf216c4b656d3e
+                  payer:
+                    document: '911111111'
+                    documentType: CC
+                    name: Prueba aliado
+                    surname: JA
+                    email: juan.jimenez@placetopay.com
+                  payment:
+                    reference: '3110'
+                    description: Pago con suscripción 3110
+                    amount:
+                      currency: COP
+                      total: 10000
   /api/reverse:
     post:
       summary: Reverse payment
