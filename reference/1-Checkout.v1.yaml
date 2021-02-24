@@ -226,6 +226,36 @@ paths:
             | Status | Status | Structure containing the status of the payment request |
             | requestId | Int | One-time payment session reference |
             | processUrl | String | URL where the user is redirected to complete the payment process. |
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      date:
+                        type: string
+                  requestId:
+                    type: number
+                  processUrl:
+                    type: string
+              examples:
+                Success:
+                  value:
+                    status:
+                      status: OK
+                      reason: PC
+                      message: La petición se ha procesado correctamente
+                      date: '2020-11-22T20:03:27-05:00'
+                    requestId: 30570
+                    processUrl: 'https://checkout.placetopay.ws/session/30570/23655a1af0999b947a721b42f6a43bf'
         '400':
           description: Bad Request
         '401':
