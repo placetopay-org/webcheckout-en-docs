@@ -6,6 +6,8 @@ info:
 servers:
   - url: 'https://authe-ptp.herokuapp.com/'
     description: WebCheckOut authenticacion
+  - url: 'https://test.placetopay.com/redirection/'
+    description: 'WebCheckOut Pruebas_Redirección '
 paths:
   '':
     post:
