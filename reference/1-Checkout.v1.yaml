@@ -18,6 +18,25 @@ paths:
           description: OK
       tags:
         - Authentication
+      description: |-
+        Authentication to service must be sent on a AUTH object, which must contain the following
+
+        **attributes**
+
+        | Parameter | Description |
+        |-----------|-------------|
+        | Login | Site identifier. |
+        | tranKey | transactional key, which consists of the following operation: Base64(SHA-1(nonce + seed + secretkey)). Nonce within operation is the original, that is, the one that is not in Base64. |
+        | nonce | Random value for each Base64-encoded request. |
+        | seed | Current date, which is generated in ISO 8601 format. |
+
+        `Login and secretKey are provided by PlacetoPay`
+
+        `This structure must be sent in each request made to the service`
+
+        `The seed can't make a difference of more than 5 minutes.`
+
+        **Errors**
     parameters: []
   api/session:
     parameters: []
