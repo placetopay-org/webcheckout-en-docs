@@ -1,0 +1,76 @@
+{
+  "items": [
+    {
+      "type": "item",
+      "title": "Authentication",
+      "uri": "docs/A. Authentication.md"
+    },
+    {
+      "type": "item",
+      "title": "Integration Flow",
+      "uri": "docs/B Integration Flow.md"
+    },
+    {
+      "type": "item",
+      "title": "Lightbox",
+      "uri": "docs/C. Lightbox.md"
+    },
+    {
+      "type": "item",
+      "title": "Plugins and Components",
+      "uri": "docs/D. Plugins and Components.md"
+    },
+    {
+      "type": "item",
+      "title": "WebCheckout",
+      "uri": "WebCheckout-ES.json"
+    },
+    
+    {
+      "type": "item",
+      "title": "Notificacion",
+      "uri": "docs/Notificacion.md"
+    },
+    {
+      "type": "item",
+      "title": "Types of Payment",
+      "uri": "docs/Types of Payment.md"
+    },
+    {
+      "type": "item",
+      "title": "Seguridad",
+      "uri": "docs/Seguridad.md"
+    },
+    {
+      "type": "item",
+      "title": "Subscription",
+      "uri": "docs/Subscription.md"
+    },
+    {
+      "type": "item",
+      "title": "Types of Documents",
+      "uri": "docs/Types of Documents.md"
+    },
+    {
+      "type": "item",
+      "title": "Taxes",
+      "uri": "docs/Taxes.md"
+    },
+    {
+      "type": "item",
+      "title": "Payment Methods",
+      "uri": "docs/Payment Methods.md"
+    },
+    {
+      "type": "item",
+      "title": "Prueba tu integracion",
+      "uri": "docs/Prueba-tu-integracion.md"
+    }
+    
+    
+    
+    
+    
+
+  ]
+}

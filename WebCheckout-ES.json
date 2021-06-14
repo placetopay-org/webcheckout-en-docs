@@ -1,0 +1,1193 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "WebCheckout",
+    "version": "1.0",
+    "description": "WebCheckout creates a secure payment page hosted in Placetopay, which allows it to collect payments quickly. It may be accessed from different devices.\n\n* **Customized design:** You can add your own image and company colors.\n\n* **Different languages and currencies: **Operations supported with different languages and currencies.\n\n* **Adapted to different resolutions:** Receptive design for different devices.\n* **Placetopay Wallet:** Placetopay offers its own wallet to provide greater security and ease in the payment process.\n\n* **Information security:** PCI standards that guarantee security *in capturing and proces**sing sensitive card information.\n\n* **Additional functions:** Taxes, mixed payments, subscriptions\n recurring charges, promotions, and more.\n\n**Important:** To use this service, your system should support communications with TLS protocol version 1.2.\n",
+    "license": {},
+    "contact": {
+      "url": "https://www.placetopay.com/web/contactanos/"
+    }
+  },
+  "servers": [],
+  "paths": {
+    "/api/session": {
+      "post": {
+        "summary": "Create Session (CreateRequest)",
+        "operationId": "post-api-session",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Request status",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "description": "Request status\n",
+                      "required": [
+                        "status",
+                        "reason",
+                        "message",
+                        "date"
+                      ],
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Provided status; it may be one of the following: [OK, FAILED, APPROVED, APPROVED_PARTIAL, PARTIAL_EXPIRED, REJECTED, PENDING, PENDING_VALIDATION, REFUNDED, MANUAL]"
+                        },
+                        "reason": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Reason code provided\n"
+                        },
+                        "message": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Description of reason code\n"
+                        },
+                        "date": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Date and time of this status\n"
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "number",
+                      "description": "Unique reference to this session\n"
+                    },
+                    "processUrl": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "URL to redirect the customer to complete the process\n"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "requestId",
+                    "processUrl"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "required": [
+                        "status",
+                        "reason",
+                        "message",
+                        "date"
+                      ],
+                      "description": "Estructura que contiene la información sobre una solicitud o pago, informa al estado actual de la misma.",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Estado proporcionado, podría ser uno de esos: [OK, FAILED, APPROVED, APPROVED_PARTIAL, PARTIAL_EXPIRED, REJECTED, PENDING, PENDING_VALIDATION, REFUNDED, MANUAL]\n"
+                        },
+                        "reason": {
+                          "type": "number",
+                          "description": "Código de motivo proporcionado\n"
+                        },
+                        "message": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Descripción del código de razón\n"
+                        },
+                        "date": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "Fecha y hora de este estado\n"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "#/components/schemas/Autentication"
+                  },
+                  "": {
+                    "$ref": "#/components/schemas/RedirectRequest"
+                  }
+                }
+              },
+              "examples": {
+                "Payment": {
+                  "value": {
+                    "auth": {
+                      "login": "test login",
+                      "tranKey": "rgyVgf7QjpJt9p5rL1DpJYA6Osk=",
+                      "nonce": "Wm1ZNE0yRXlNakUzWVRrME56VXlOV013TmpJMVlUTmhOVEV5TmpVeFptTT0=",
+                      "seed": "2021-05-03T22:21:17-05:00"
+                    },
+                    "locale": "es_CO",
+                    "buyer": {
+                      "document": "4939349317",
+                      "documentType": "CC",
+                      "name": "Clemens Auer",
+                      "surname": "Beer",
+                      "email": "gloria.gorczany@yahoo.com",
+                      "mobile": "3006108300",
+                      "address": {
+                        "street": "21440 Belle Curve",
+                        "city": "Kuphalborough",
+                        "state": "Antioquia",
+                        "postalCode": "40881",
+                        "country": "US"
+                      }
+                    },
+                    "payment": {
+                      "reference": "TEST_20210503_222115",
+                      "description": "Quas unde eum quis molestias odit excepturi provident.",
+                      "amount": {
+                        "taxes": [
+                          {
+                            "kind": "ice",
+                            "amount": 2.28,
+                            "base": 0
+                          },
+                          {
+                            "kind": "valueAddedTax",
+                            "amount": 3.61,
+                            "base": 0
+                          }
+                        ],
+                        "details": [
+                          {
+                            "kind": "shipping",
+                            "amount": 0.95
+                          },
+                          {
+                            "kind": "tip",
+                            "amount": 0.95
+                          },
+                          {
+                            "kind": "subtotal",
+                            "amount": 19
+                          }
+                        ],
+                        "currency": "USD",
+                        "total": 26.79
+                      },
+                      "allowPartial": false,
+                      "shipping": {
+                        "document": "4939349317",
+                        "documentType": "CC",
+                        "name": "Clemens Auer",
+                        "surname": "Beer",
+                        "email": "gloria.gorczany@yahoo.com",
+                        "mobile": "3006108300",
+                        "address": {
+                          "street": "21440 Belle Curve",
+                          "city": "Kuphalborough",
+                          "state": "Antioquia",
+                          "postalCode": "40881",
+                          "country": "US"
+                        }
+                      },
+                      "items": [
+                        {
+                          "sku": 56000,
+                          "name": "Nihil adipisci ut.",
+                          "category": "physical",
+                          "qty": 1,
+                          "price": 19,
+                          "tax": 3.61
+                        }
+                      ],
+                      "subscribe": false
+                    },
+                    "fields": [
+                      {
+                        "keyword": "Redeem Code",
+                        "value": 999285,
+                        "displayOn": "payment"
+                      }
+                    ],
+                    "returnUrl": "https://dnetix.co/p2p/client",
+                    "ipAddress": "181.53.226.56",
+                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+                    "expiration": "2021-05-04T22:21:15-05:00",
+                    "captureAddress": false,
+                    "skipResult": false,
+                    "noBuyerFill": false
+                  }
+                },
+                "Subscription": {
+                  "value": {
+                    "auth": {
+                      "login": "test login",
+                      "tranKey": "tBF+Fumami9Qq9HNeiKce+WWGFs=",
+                      "nonce": "TURRME9EZzNaV1F3TTJJell6SmxaakZpWVRKallUWmxOemt3WmpsaE9HWT0=",
+                      "seed": "2021-05-03T22:55:00-05:00"
+                    },
+                    "locale": "es_CO",
+                    "buyer": {
+                      "document": "4939349317",
+                      "documentType": "CC",
+                      "name": "Clemens Auer",
+                      "surname": "Beer",
+                      "email": "gloria.gorczany@yahoo.com",
+                      "mobile": "3006108300",
+                      "address": {
+                        "street": "21440 Belle Curve",
+                        "city": "Kuphalborough",
+                        "state": "Antioquia",
+                        "postalCode": "40881",
+                        "country": "US"
+                      }
+                    },
+                    "subscription": {
+                      "reference": "TEST_20210503_222115",
+                      "description": "Quas unde eum quis molestias odit excepturi provident."
+                    },
+                    "fields": [
+                      {
+                        "keyword": "Redeem Code",
+                        "value": 999285,
+                        "displayOn": "payment"
+                      }
+                    ],
+                    "returnUrl": "https://dnetix.co/p2p/client",
+                    "ipAddress": "181.53.226.56",
+                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+                    "expiration": "2021-05-04T22:21:15-05:00",
+                    "captureAddress": false,
+                    "skipResult": false,
+                    "noBuyerFill": false
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Requests the creation of the session (payment or subscription type) and returns the identifier and the processing URL.",
+        "x-internal": false
+      },
+      "parameters": []
+    },
+    "/api/session/{requestId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "requestId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "Consult Session (getRequestInformation)",
+        "operationId": "post-api-session-requestId",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedirectInformation"
+                }
+              }
+            }
+          }
+        },
+        "description": "It obtains the session information; if there are transactions in the session, their details are shown.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Autentication"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "type": "object",
+                    "properties": {
+                      "login": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "tranKey": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "nonce": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "seed": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "login",
+                      "tranKey",
+                      "nonce",
+                      "seed"
+                    ]
+                  }
+                },
+                "required": [
+                  "auth"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reverse": {
+      "post": {
+        "summary": "Reverse Payment (ReversePayment)",
+        "operationId": "post-api-reverse",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReverseResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "auth": {
+                    "$ref": "#/components/schemas/Autentication"
+                  },
+                  "internalReference": {
+                    "type": "string",
+                    "description": "Internal reference for the transaction to be reversed that is on the getRequestInformation (payment) transaction list."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Allows you to revert an approved payment with the internal reference code."
+      }
+    },
+    "/api/collect": {
+      "post": {
+        "summary": "CollectRequest (Collect)",
+        "operationId": "post-api-collect",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequest"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CollectRequest"
+              }
+            }
+          }
+        },
+        "description": "It allows you to collect charges without user intervention, using previously registered payment methods.",
+        "x-internal": false
+      }
+    },
+    "/api/transaction": {
+      "post": {
+        "summary": "",
+        "operationId": "post-api-transaction",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentRequest"
+                }
+              }
+            }
+          }
+        },
+        "description": "Permite realizar operaciones básicas de preauthorización como CHECKOUT, REAUTHORIZATION y REVERSE, por otro lado también permite revertir un pago aprobado con el código de referencia interna.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionActionRequest"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Person": {
+        "description": "Structure that reflects information about a person involved in a transaction.",
+        "type": "object",
+        "title": "Person",
+        "properties": {
+          "document": {
+            "type": "string",
+            "minLength": 1
+          },
+          "documentType": {
+            "type": "string",
+            "minLength": 1,
+            "description": ""
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "surname": {
+            "type": "string",
+            "minLength": 1
+          },
+          "company": {
+            "type": "string",
+            "minLength": 1
+          },
+          "email": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mobile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "street": {
+                "type": "string",
+                "minLength": 1
+              },
+              "city": {
+                "type": "string",
+                "minLength": 1
+              },
+              "state": {
+                "type": "string",
+                "minLength": 1
+              },
+              "postalCode": {
+                "type": "string",
+                "minLength": 1
+              },
+              "country": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      },
+      "PaymentRequest": {
+        "title": "PaymentRequest",
+        "type": "object",
+        "description": "Structure that contains information about the payment of the transaction required by the web service.",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "description": "Unique reference for the payment request."
+          },
+          "description": {
+            "type": "string",
+            "description": "Account description."
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "allowPartial": {
+            "type": "boolean",
+            "description": "Defines whether the amount to be charged can be partial."
+          },
+          "shipping": {
+            "$ref": "#/components/schemas/Person"
+          },
+          "items": {
+            "$ref": "#/components/schemas/Items"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/NameValuePair"
+          },
+          "recurring": {
+            "$ref": "#/components/schemas/Recurring"
+          },
+          "subscribe": {
+            "type": "boolean",
+            "description": "It allows you to request a collection process and a subscription process in the same session."
+          }
+        },
+        "required": [
+          "reference",
+          "amount"
+        ]
+      },
+      "Amount": {
+        "title": "Amount",
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          },
+          "total": {
+            "type": "string"
+          },
+          "taxes": {
+            "$ref": "#/components/schemas/TaxDetail"
+          },
+          "details": {
+            "$ref": "#/components/schemas/AmountDetail"
+          }
+        },
+        "required": [
+          "currency",
+          "total"
+        ]
+      },
+      "Items": {
+        "title": "Items",
+        "type": "object",
+        "description": "Has a collection of element structures.",
+        "properties": {
+          "item": {
+            "$ref": "#/components/schemas/Item"
+          }
+        }
+      },
+      "NameValuePair": {
+        "description": " It is used to define a type of key-value pair.",
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Key for the data value pair."
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Value for the data pair."
+          },
+          "displayOn": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Under which circumstances the field should be shown in the redirection interface. [none, payment, receipt, both, approved]"
+          }
+        }
+      },
+      "Recurring": {
+        "description": "Structure that contains the information required for a recurring payment request.",
+        "type": "object",
+        "properties": {
+          "periodicity": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Invoice frequency [D, M, Y]"
+          },
+          "interval": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Interval associated to frequency.\n"
+          },
+          "nextPayment": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Date of next payment.",
+            "format": "date"
+          },
+          "maxPeriods": {
+            "type": [
+              "string",
+              "integer"
+            ],
+            "minLength": 1,
+            "description": "Maximum period number (-1 if there is no restriction)"
+          },
+          "dueDate ": {
+            "type": "string",
+            "format": "date",
+            "description": "Date to complete payment.\n"
+          },
+          "notificationUrl ": {
+            "type": "string",
+            "description": "URL where the service will notify every time a recurring payment is made.\n"
+          }
+        },
+        "required": [
+          "periodicity",
+          "interval",
+          "nextPayment",
+          "maxPeriods"
+        ]
+      },
+      "Item": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "Stock keeping unit (SKU) corresponding to the item."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name of item."
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1,
+            "description": "It may be [digital, physical]."
+          },
+          "qty": {
+            "type": "string",
+            "description": "Name of a particular item."
+          },
+          "price": {
+            "type": "number",
+            "description": "Cost of item."
+          },
+          "tax": {
+            "type": "number",
+            "description": "Tax on item."
+          }
+        },
+        "required": [
+          "sku"
+        ]
+      },
+      "TaxDetail": {
+        "title": "TaxDetail",
+        "type": "object",
+        "description": "Structure to save information about a tax.",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "description": "Classification value; it may be [valueAddedTax, exciseDuty]."
+          },
+          "amount": {
+            "type": "integer",
+            "description": "Specified value.\n"
+          }
+        },
+        "required": [
+          "amount"
+        ]
+      },
+      "AmountDetail": {
+        "title": "AmountDetail",
+        "type": "object",
+        "description": "Structure to save information about the value.",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "description": "\tClassification value; it may be [discount, additional, vatDevolutionBase, shipping, handlingFee, insurance, giftWrap, subtotal, fee, tip]\n"
+          },
+          "amount": {
+            "type": "integer",
+            "description": "Specified value."
+          }
+        },
+        "required": [
+          "kind",
+          "amount"
+        ]
+      },
+      "SubscriptionRequest": {
+        "title": "SubscriptionRequest",
+        "type": "object",
+        "description": "Structure that contains information about a subscription request to obtain a Token.",
+        "properties": {
+          "reference": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/NameValuePair"
+          }
+        },
+        "required": [
+          "reference"
+        ]
+      },
+      "RedirectRequest": {
+        "title": "RedirectRequest",
+        "type": "object",
+        "description": "Structure that contains all the information about the transaction to be processed.",
+        "x-examples": {
+          "Crear sesión básica ": {
+            "locale": "es_CO",
+            "payer": {
+              "name": "Diego",
+              "surname": "osorio",
+              "email": "diego.calle4@placetopay.com",
+              "documentType": "CC",
+              "document": "1036949824",
+              "mobile": "3102903560"
+            },
+            "payment": {
+              "reference": "331122",
+              "description": "Pago básico de ejemplo",
+              "amount": {
+                "currency": "USD",
+                "total": 100
+              },
+              "allowPartial": false
+            },
+            "expiration": "2021-06-31T00:00:00-05:00",
+            "returnUrl": "https://mysite.com/response/3210",
+            "ipAddress": "127.0.0.1",
+            "userAgent": "PlacetoPay Sandbox"
+          },
+          "Crear sesión checkin": {
+            "locale": "es_CO",
+            "type": "checkin",
+            "payer": {
+              "name": "Diego",
+              "surname": "osorio",
+              "email": "diego.calle4@placetopay.com",
+              "documentType": "CC",
+              "document": "1036949824",
+              "mobile": "3102903560"
+            },
+            "payment": {
+              "reference": "331122",
+              "description": "Pago básico de ejemplo",
+              "amount": {
+                "currency": "USD",
+                "total": 100
+              },
+              "allowPartial": false
+            },
+            "expiration": "2021-06-31T00:00:00-05:00",
+            "returnUrl": "https://mysite.com/response/3210",
+            "ipAddress": "127.0.0.1",
+            "userAgent": "PlacetoPay Sandbox"
+          }
+        },
+        "properties": {
+          "locale": {
+            "type": "string",
+            "description": "Defined with codes ISO 631-1 (language) and ISO 3166-1 alpha-2 (2-letter country code). ex. en_US, es_CO"
+          },
+          "payer": {
+            "$ref": "#/components/schemas/Person"
+          },
+          "buyer": {
+            "$ref": "#/components/schemas/Person"
+          },
+          "payment": {
+            "$ref": "#/components/schemas/PaymentRequest"
+          },
+          "subscription": {
+            "$ref": "#/components/schemas/SubscriptionRequest"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/NameValuePair"
+          },
+          "paymentMethod": {
+            "type": "string",
+            "description": "Force the payment method in the redirection interface; the accepted codes are included in the list.Si necesita más de uno separarlos con coma.\tIf you need more than one, separate them with commas.\n\nex. visa,amex,master"
+          },
+          "expiration": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Expiration date of a request; the user must complete the process before this date."
+          },
+          "returnUrl": {
+            "type": "string",
+            "description": "Return URL is used to redirect the user once they complete the payment operation."
+          },
+          "cancelUrl": {
+            "type": "string",
+            "description": "URL to return when the costumer aborts the operation."
+          },
+          "ipAddress": {
+            "type": "string",
+            "description": "User IP address.\n"
+          },
+          "userAgent": {
+            "type": "string"
+          },
+          "skipResult": {
+            "type": "boolean",
+            "description": "If the parameter is sent as true, the result screen is omitted during the redirection, and once the payment is approved, the user is returned to the merchant automatically."
+          },
+          "noBuyerFill": {
+            "type": "boolean",
+            "description": "The information requested during the redirection is filled out by default with the purchaser's sent data; if this is sent as true, this auto-complete is omitted."
+          },
+          "type": {
+            "type": "string",
+            "description": "Operation type"
+          }
+        }
+      },
+      "Autentication": {
+        "description": "",
+        "type": "object",
+        "title": "Autentication",
+        "properties": {
+          "login": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Site identifier."
+          },
+          "tranKey": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Transaction key resulting from the following operation: Base64(SHA-1(nonce + seed + secretkey)).The nonce in the operation is the original one, that is, the one not included in Base64)."
+          },
+          "nonce": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Random value for each request coded in Base64."
+          },
+          "seed": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Current date, which is generated in ISO 8601 format."
+          }
+        },
+        "required": [
+          "login",
+          "tranKey",
+          "nonce",
+          "seed"
+        ]
+      },
+      "Status": {
+        "description": "Structure that contains information about the response to a request or payment and provides information on its current status.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Status of a request or payment"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Reason code provided."
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Description of reason code."
+          },
+          "date": {
+            "type": "string",
+            "minLength": 1,
+            "format": "date-time",
+            "description": "Date and time when payment status is generated."
+          }
+        },
+        "required": [
+          "status",
+          "reason",
+          "message",
+          "date"
+        ]
+      },
+      "Transaction": {
+        "title": "Transaction",
+        "type": "object",
+        "description": "Structure of response to a request for transaction information.",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "internalReference": {
+            "type": "integer",
+            "description": "Internal reference in Placetopay. Reference sent by the merchant for the transaction."
+          },
+          "reference": {
+            "type": "string",
+            "description": "Reference sent by the merchant for the transaction.\n"
+          },
+          "paymentMethod": {
+            "type": "string",
+            "description": "Code of payment method used."
+          },
+          "paymentMethodName": {
+            "type": "string",
+            "description": "Name of payment method used."
+          },
+          "issuerName": {
+            "type": "string",
+            "description": "Name of issuer or processor.\n"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/AmountConversion"
+          },
+          "receipt": {
+            "type": "string",
+            "description": "Transaction receipt number."
+          },
+          "franchise": {
+            "type": "string",
+            "description": "Franchise of card used."
+          },
+          "refunded": {
+            "type": "boolean"
+          },
+          "authorization": {
+            "type": "string",
+            "description": "Authorization code."
+          },
+          "processorFields": {
+            "$ref": "#/components/schemas/NameValuePair"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "AmountConversion": {
+        "title": "AmountConversion",
+        "type": "object",
+        "description": "Structure to define the conversion factor and values.",
+        "properties": {
+          "from": {
+            "$ref": "#/components/schemas/AmountBase"
+          },
+          "to": {
+            "$ref": "#/components/schemas/AmountBase"
+          },
+          "factor": {
+            "type": "string"
+          }
+        }
+      },
+      "AmountBase": {
+        "title": "AmountBase",
+        "type": "object",
+        "description": "Structure representing an amount, defining currency and total.",
+        "properties": {
+          "currency ": {
+            "type": "string",
+            "description": "Moneda acorde al ISO 4217 (alphabetic code).\n"
+          },
+          "total ": {
+            "type": "number",
+            "description": "Valor total.\n"
+          }
+        }
+      },
+      "SubscriptionResponse": {
+        "title": "SubscriptionResponse",
+        "type": "object",
+        "description": "Structure that contains information about a subscription request to obtain a Token.",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "type": {
+            "type": "string",
+            "description": "This chain dictates the type of subscription that is returned; it may be [token, account]"
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/NameValuePair"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "RedirectInformation": {
+        "title": "RedirectInformation",
+        "type": "object",
+        "description": "Structure of response to a request for transaction information.",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "request": {
+            "$ref": "#/components/schemas/RedirectRequest"
+          },
+          "payment": {
+            "$ref": "#/components/schemas/Transaction"
+          },
+          "subscription": {
+            "$ref": "#/components/schemas/SubscriptionResponse"
+          }
+        }
+      },
+      "ReverseResponse": {
+        "title": "ReverseResponse",
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "payment": {
+            "$ref": "#/components/schemas/PaymentRequest"
+          }
+        },
+        "description": "Structure of response to a reverse payment request."
+      },
+      "Instrument": {
+        "title": "Instrument",
+        "type": "object",
+        "description": "Structure that contains details on previously registered payment methods.",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/SimpleToken"
+          }
+        }
+      },
+      "SimpleToken": {
+        "title": "SimpleToken",
+        "type": "object",
+        "description": "Structure that contains details about a token previously obtained through a subscription process; the token or subtoken should be sent whenever it is enabled; it is not necessary to send both.",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Full token for the credit card; it should be used to request any transaction to Placetopay."
+          },
+          "subtoken": {
+            "type": "string",
+            "description": "Number representation of the Token for where an additional number is required, similar to a credit card number; the last 4 digits are equal to the credit card's last 4 digits."
+          },
+          "installments": {
+            "type": "integer",
+            "description": "Number of installments requested to collect charge (optional)."
+          },
+          "cvv": {
+            "type": "string",
+            "description": "Security code digits of the card to be used when necessary; it is usually left blank if the terminal has no CVV validation."
+          }
+        }
+      },
+      "CollectRequest": {
+        "title": "CollectRequest",
+        "type": "object",
+        "description": "It allows you to collect charges without user intervention, using previously registered payment methods.",
+        "properties": {
+          "payer": {
+            "$ref": "#/components/schemas/Person"
+          },
+          "payment": {
+            "$ref": "#/components/schemas/PaymentRequest"
+          },
+          "instrument": {
+            "$ref": "#/components/schemas/Instrument"
+          }
+        },
+        "required": [
+          "payer",
+          "payment",
+          "instrument"
+        ]
+      },
+      "TransactionActionRequest": {
+        "title": "TransactionActionRequest",
+        "type": "object",
+        "description": "Estructura que permite realizar solicitudes de preauthorización como CHECKOUT, REAUTHORIZATION y REVERSE",
+        "x-examples": {
+          "checkout example": {
+            "internalReference": 1,
+            "amount": {
+              "currency": "USD",
+              "total": 100
+            },
+            "action": "checkout"
+          },
+          "reauthorization example": {
+            "internalReference": 1,
+            "amount": {
+              "currency": "USD",
+              "total": 100
+            },
+            "action": "reauthorization"
+          },
+          "reverse example": {
+            "internalReference": 1,
+            "action": "reverse"
+          }
+        },
+        "properties": {
+          "internalReference": {
+            "type": "integer"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "action": {
+            "type": "string",
+            "example": "checkout"
+          }
+        },
+        "required": [
+          "internalReference",
+          "action"
+        ]
+      },
+      "DirectResponse": {
+        "title": "DirectResponse",
+        "type": "object",
+        "description": "Estructura que contiene los detalles de del transacción",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "internalReference": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {}
+  }
+}
