@@ -50,7 +50,7 @@ Due to PCI standards, your servers need TLSv1.2 to receive the request.Please, r
 
 - #### **SoapFault responds with the message "Authentication Failed 103"**
 
-EIn the authentication process, Placetopay reviews the Created field; this filed should be in GMT time or local time. If you get this response, it is because your time is not accurate with respect to the real time.We only allow a 5-minute difference between times. You may use NTP to keep your clock's accuracy.
+In the authentication process, Placetopay reviews the Created field; this filed should be in GMT time or local time. If you get this response, it is because your time is not accurate with respect to the real time.We only allow a 5-minute difference between times. You may use NTP to keep your clock's accuracy.
 
 - #### **Although I am giving the EXACT values as those in previous examples to BASE64(SHA1($Nonce + $Created + $tranKey)), I am getting a different password digest.**
 

@@ -1,27 +1,27 @@
 # Seguridad
 
-En este apartado se presentan los diferentes modulos de seguridad que Placetopay tiene disponible según los diferentes paises en los que se encuentra. **Para hacer uso de estos modulos de seguridad NO es necesario realizar ninguna integración adicional.**
+This section presents the different security modules that PlacetoPay has available according to the different countries in which it is located. To use these security modules, it is NOT necessary to carry out any additional integration.
 
 ## 3DS
 
-El protocolo de autenticación 3-D Secure se basa en un modelo de tres dominios en el que el Dominio del adquirente y el Dominio del emisor están conectados por el Dominio de interoperabilidad con el fin de autenticar a un Titular de tarjeta durante una transacción de comercio electrónico (e-commerce) o para proporcionar verificación de identidad y confirmación de cuenta.
+The 3-D Secure authentication protocol is based on a three-domain model in which the Acquirer Domain and the Issuer Domain are connected by the Interoperability Domain in order to authenticate a Cardholder during an e-commerce transaction or to provide identity verification and account confirmation.
+
 
 ```json
-Disponible en: 
+Available in:
 - Ecuador (EC)
 - Costa Rica (CR)
 - Colombia (CO)
 - Panama (PA)
 ```
 
-
 ## Scudo
 
-Scudo te ayuda a reducir al máximo el riesgo de contracargos a través de un sistema modular de control de fraude, manteniendo un adecuado balance entre la tasa de aprobación y los costos de operación.
-Contamos con módulos personalizables de acuerdo a la realidad de la compañía, solo activas los que necesites
+Scudo helps you to minimize the risk of chargebacks through a modular fraud control system, maintaining an appropriate balance between the approval rate and operation costs. We have customizable modules according to the reality of the company, you only activate the ones you need.
+
 
 ```json
-Disponible en: 
+Available in:
 - Ecuador (EC)
 - Costa Rica (CR)
 - Colombia (CO)
@@ -31,10 +31,10 @@ Disponible en:
 ```
 
 ## AVS
-
-El servicio de verificación de direcciones (AVS) es un servicio de prevención de fraude para transacciones con tarjetas no presente usando la dirección del titular.
+The Address Verification Service (AVS) is a fraud prevention service for Card-Not-Present Transactions using the cardholder's address.
 
 ```json
-Disponible en: 
+Available in:
 - Puerto Rico (PR)
 ```
+

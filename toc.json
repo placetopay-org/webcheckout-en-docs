@@ -28,7 +28,7 @@
     
     {
       "type": "item",
-      "title": "Notificacion",
+      "title": "Notification",
       "uri": "docs/Notificacion.md"
     },
     {
@@ -38,7 +38,7 @@
     },
     {
       "type": "item",
-      "title": "Seguridad",
+      "title": "Security",
       "uri": "docs/Seguridad.md"
     },
     {
