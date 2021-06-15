@@ -452,7 +452,7 @@
             }
           }
         },
-        "description": "It allows to perform basic pre-authorization operations such as CHECKOUT, REAUTHORIZATION and REVERSE, it also allows to reverse an approved payment with the internal reference code.",
+        "description": "It allows to perform basic pre-authorization operations such as CHECKOUT, REAUTHORIZATION (Does not apply to Puerto Rico) and REVERSE, it also allows to reverse an approved payment with the internal reference code.",
         "requestBody": {
           "content": {
             "application/json": {
