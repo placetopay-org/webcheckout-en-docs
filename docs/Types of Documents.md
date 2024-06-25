@@ -1,6 +1,6 @@
 ---
 tags: [Crear sesión]
-internal:true
+internal: true
 ---
 
 
