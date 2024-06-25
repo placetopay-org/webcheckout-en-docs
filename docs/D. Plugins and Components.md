@@ -1,3 +1,7 @@
+---
+internal: true
+---
+
 # Plugins and Components
 
 ## Plugins

@@ -1,3 +1,7 @@
+---
+internal: true
+---
+
 # Security
 
 This section presents the different security modules that PlacetoPay has available according to the different countries in which it is located. To use these security modules, it is NOT necessary to carry out any additional integration.

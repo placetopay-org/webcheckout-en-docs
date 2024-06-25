@@ -1,5 +1,6 @@
 ---
 tags: [Crear sesión]
+internal: true
 ---
 
 # Elementos-adicionales-(fields)

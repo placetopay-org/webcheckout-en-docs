@@ -1,3 +1,8 @@
+---
+internal: true
+---
+
+
 # Lightbox
 
 Avoid redirecting your user by using a Lightbox window, which will take up the entire screen with a clear background  and the WebCheckout Placetopay page is shown at the center, inside a dynamically resizable box.

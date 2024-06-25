@@ -1,3 +1,7 @@
+---
+internal: true
+---
+
 # Notification
 
 A notification allows the merchant to be informed about the status of the sessions.

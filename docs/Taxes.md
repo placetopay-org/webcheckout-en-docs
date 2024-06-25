@@ -1,5 +1,6 @@
 ---
 tags: [Crear sesión]
+internal: true
 ---
 
 # Taxes

@@ -1,3 +1,7 @@
+---
+internal: true
+---
+
 # Integration Flow
 
 1. To redirect your user to the WebCheckout system, you must use the **`createRequest`** method. If you do not wish to redirect the user, you can use the lightbox option. If the request is processed correctly, the service creates and returns the following in its response:  `requestID` identifier and `processUrl` processing URL.

@@ -1,3 +1,10 @@
+# PlacetoPay Checkout
+
+Welcome to PlacetoPay Checkout, the complete solution to streamline and secure your online payments. With our pre-designed and hosted platform, you can accept payments quickly, securely, and from any device. You can accept one-time payments, recurring payments, mixed payments, and tokenize payment methods.
+
+Discover the documentation for PlacetoPay Checkout at [https://docs.placetopay.dev/en/checkout](https://docs.placetopay.dev/en/checkout
+
+<!--
 # Authentication
 
 The WebCheckout Placetopay API uses Web Services Security UsernameToken Profile 1.1 to authenticate all requests.
@@ -56,3 +63,4 @@ In the authentication process, Placetopay reviews the Created field; this filed 
 
 Keep in mind that BASE64 should be for the SHA1 raw output, and according to all programming languages, it may be required to configure this option, for example: In PHP base64_encode(sha1( … , true)), this parameter would return the raw output for the SHA1 algorithm.
 
+--> 

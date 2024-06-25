@@ -1,3 +1,7 @@
+---
+internal: true
+---
+
 # Test you integration
 
 ## URL's Base
