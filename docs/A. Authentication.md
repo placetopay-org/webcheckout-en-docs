@@ -2,7 +2,7 @@
 
 Welcome to PlacetoPay Checkout, the complete solution to streamline and secure your online payments. With our pre-designed and hosted platform, you can accept payments quickly, securely, and from any device. You can accept one-time payments, recurring payments, mixed payments, and tokenize payment methods.
 
-Discover the documentation for PlacetoPay Checkout at [https://docs.placetopay.dev/en/checkout](https://docs.placetopay.dev/en/checkout
+Discover the documentation for PlacetoPay Checkout at [https://docs.placetopay.dev/en/checkout](https://docs.placetopay.dev/en/checkout)
 
 <!--
 # Authentication
